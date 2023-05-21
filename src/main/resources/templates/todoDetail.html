@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo詳細</title>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2">TODO詳細</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>内容</th>
+                <th>タグ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="todo-row" th:data-id="${todo.id}" th:each="todo : ${todoDetail}">
+                <td th:text="${todo.id}"></td>
+                <td th:text="${todo.content}"></td>
+                <td th:text="${todo.todoTag}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link" th:onclick="|location.href='${todo.id}/update'|" type="button"
+                        th:each="todo : ${todoDetail}">
+                    編集
+                </button>
+            </div>
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <form method="GET" th:action="@{'/todo/' + ${todo.id} + '/delete'}" th:each="todo : ${todoDetail}">
+                    <button class="button is-danger" type="submit">
+                        削除
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo一覧</title>
+</head>
+<body>
+<h1>Todo一覧</h1>
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2">TODO一覧</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>タイトル</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="todo-row" th:data-id="${todo.id}" th:each="todo : ${todoList}">
+                <td th:text="${todo.id}"></td>
+                <td th:text="${todo.title}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<script>
+    document
+        .addEventListener('DOMContentLoaded', () => {
+            addDetailLinkToRow('.todo-row', '/todo')
+        });
+
+</script>
+</body>
+</html>

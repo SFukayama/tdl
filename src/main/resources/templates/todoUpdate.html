@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo編集</title>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2">TODO編集</h2>
+        <form action="#" th:action="@{'/todo/' + ${todo.id}}" method="POST">
+
+            <input name="id" th:value="${todo.id}" type="hidden"/>
+
+            <div class="field">
+                <label class="label">内容</label>
+                <div class="control">
+                    <input class="input" name="content" required type="text" th:value="${todo.content}">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">タグ</label>
+                <div class="control">
+                    <div class="select">
+                        <select name="todoTag" required>
+                            <option value="">選択してください</option>
+                            <option th:each="tag : ${tag}" th:text="${tag.tag}" th:value="${tag.tag}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit">更新</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+</body>
+</html>
